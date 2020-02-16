@@ -36,4 +36,11 @@ export class ProductService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+
+  getProduct(id: number): Observable<IProduct | undefined> {
+    return this.getProducts()
+      .pipe(
+        map((products: IProduct[]) => products.find(p => p.productId === id))
+      );
+  }
 }
